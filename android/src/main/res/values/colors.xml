@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#1abc9c</color>
+    <color name="colorPrimaryDark">#1abc9c</color>
+    <color name="colorAccent">#34495e</color>
+    <color name="cloud_white">#ecf0f1</color>
+    <color name="blue">#3498db</color>
+    <color name="orange_light">#e67e22</color>
+    <color name="red_light">#e74c3c</color>
+    <color name="peter_river">#3498db</color>
+</resources>

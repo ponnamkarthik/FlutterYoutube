@@ -30,6 +30,7 @@ public class FlutterYoutubePlugin implements MethodCallHandler {
 
   @Override
   public void onMethodCall(MethodCall call, Result result) {
+
     if (call.method.equals("playYoutubeVideo")) {
       String apiKey = call.argument("api");
       String videoId = call.argument("id");

@@ -46,6 +46,8 @@ public class PlayerActivity extends YouTubeBaseActivity implements YouTubePlayer
             youTubePlayer = player;
             player.cueVideo(videoId);
 
+            player.setManageAudioFocus(true);
+
             player.setFullscreen(isFullScreen);
 
         }

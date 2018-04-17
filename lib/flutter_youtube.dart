@@ -1,10 +1,9 @@
 import 'package:meta/meta.dart';
-
 import 'package:flutter/services.dart';
 
 class FlutterYoutube {
   static const MethodChannel _channel =
-      const MethodChannel('flutter_youtube');
+      const MethodChannel('PonnamKarthik/flutter_youtube');
 
   static String getIdFromUrl(String url, [bool trimWhitespaces = true]) {
 

@@ -8,7 +8,7 @@ Supported : Android
 
 ```yaml
 dependencies:
-  flutter_youtube: "^0.1.1"
+  flutter_youtube: "^0.1.2"
 ```
 
 ###Imports

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.widget.Toast;
 
 import com.google.android.youtube.player.YouTubeBaseActivity;
@@ -23,6 +24,7 @@ public class PlayerActivity extends YouTubeBaseActivity implements YouTubePlayer
     private String API_KEY = "";
     private String videoId = "";
     private boolean isFullScreen = false;
+    private boolean goFullScreen = false;
 
 
     @Override
@@ -34,7 +36,7 @@ public class PlayerActivity extends YouTubeBaseActivity implements YouTubePlayer
 
         API_KEY = getIntent().getStringExtra("api");
         videoId = getIntent().getStringExtra("videoId");
-        isFullScreen = getIntent().getBooleanExtra("fullScreen", false);
+        goFullScreen = getIntent().getBooleanExtra("fullScreen", false);
 
         youTubeView = (YouTubePlayerView) findViewById(R.id.youtube_view);
         youTubeView.initialize(API_KEY, this);
@@ -48,7 +50,18 @@ public class PlayerActivity extends YouTubeBaseActivity implements YouTubePlayer
 
             player.setManageAudioFocus(true);
 
-            player.setFullscreen(isFullScreen);
+            player.setFullscreen(goFullScreen);
+
+            if(goFullScreen) {
+                isFullScreen = goFullScreen;
+            }
+
+            player.setOnFullscreenListener(new YouTubePlayer.OnFullscreenListener() {
+                @Override
+                public void onFullscreen(boolean b) {
+                    isFullScreen = b;
+                }
+            });
 
         }
     }
@@ -78,5 +91,16 @@ public class PlayerActivity extends YouTubeBaseActivity implements YouTubePlayer
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode == KeyEvent.KEYCODE_BACK) {
+            if(isFullScreen && youTubePlayer != null) {
+                youTubePlayer.setFullscreen(false);
+                return true;
+            }
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

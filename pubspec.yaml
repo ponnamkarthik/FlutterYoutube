@@ -1,8 +1,8 @@
 name: flutter_youtube
 description: Flutter Plugin to play youtube Videos
-version: 0.1.1
+version: 0.1.2
 author: Karthik Ponnam <ponnamkarthik3@gmail.com>
-homepage: https://github.com/PonnamKarthik/FlutterToast
+homepage: https://github.com/PonnamKarthik/FlutterYoutube
 
 dependencies:
   flutter:

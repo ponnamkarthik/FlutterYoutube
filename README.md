@@ -2,13 +2,15 @@
 
 Flutter Plugin to play youtube Videos using youtube player api (android)
 
-Supported : Android
+Supported
+* Android
+* iOS
 
 ## How to Use
 
 ```yaml
 dependencies:
-  flutter_youtube: "^0.1.2"
+  flutter_youtube: "^1.0.0"
 ```
 
 ###Imports

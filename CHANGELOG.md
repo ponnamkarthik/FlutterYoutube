@@ -1,3 +1,7 @@
+## [1.0.0]
+
+* iOS Support added
+
 ## [0.1.1] - 17-04-2018
 
 * Minor BugFixes

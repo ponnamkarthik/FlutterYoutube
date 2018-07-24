@@ -1,3 +1,7 @@
+## [1.0.1]
+
+* Bug fixes (video pause when screen rotated)
+
 ## [1.0.0]
 
 * iOS Support added

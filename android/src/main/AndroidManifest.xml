@@ -3,7 +3,10 @@
     package="io.github.ponnamkarthik.flutteryoutube">
 
     <application >
-        <activity android:name=".PlayerActivity"/>
+        <activity
+                android:name=".PlayerActivity"
+                android:configChanges="orientation|screenSize|keyboardHidden|navigation">
+        </activity>
     </application>
 
 </manifest>

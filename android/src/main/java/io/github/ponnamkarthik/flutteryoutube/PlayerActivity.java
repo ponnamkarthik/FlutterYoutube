@@ -1,10 +1,7 @@
 package io.github.ponnamkarthik.flutteryoutube;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.Toast;
 
@@ -24,6 +21,7 @@ public class PlayerActivity extends YouTubeBaseActivity implements YouTubePlayer
     private String API_KEY = "";
     private String videoId = "";
     private boolean isFullScreen = false;
+    private boolean autoPlay = false;
     private boolean goFullScreen = false;
 
 
@@ -37,16 +35,22 @@ public class PlayerActivity extends YouTubeBaseActivity implements YouTubePlayer
         API_KEY = getIntent().getStringExtra("api");
         videoId = getIntent().getStringExtra("videoId");
         goFullScreen = getIntent().getBooleanExtra("fullScreen", false);
+        autoPlay = getIntent().getBooleanExtra("autoPlay", false);
 
         youTubeView = (YouTubePlayerView) findViewById(R.id.youtube_view);
         youTubeView.initialize(API_KEY, this);
     }
 
     @Override
-    public void onInitializationSuccess(Provider provider, YouTubePlayer player, boolean wasRestored) {
+    public void onInitializationSuccess(Provider provider, final YouTubePlayer player, boolean wasRestored) {
         if (!wasRestored) {
             youTubePlayer = player;
-            player.cueVideo(videoId);
+
+            if(autoPlay) {
+                player.loadVideo(videoId);
+            } else {
+                player.cueVideo(videoId);
+            }
 
             player.setManageAudioFocus(true);
 
@@ -60,6 +64,67 @@ public class PlayerActivity extends YouTubeBaseActivity implements YouTubePlayer
                 @Override
                 public void onFullscreen(boolean b) {
                     isFullScreen = b;
+                }
+            });
+
+            player.setPlaybackEventListener(new YouTubePlayer.PlaybackEventListener() {
+                @Override
+                public void onPlaying() {
+
+                }
+
+                @Override
+                public void onPaused() {
+
+                }
+
+                @Override
+                public void onStopped() {
+
+                }
+
+                @Override
+                public void onBuffering(boolean b) {
+
+                }
+
+                @Override
+                public void onSeekTo(int i) {
+
+                }
+            });
+
+            player.setPlayerStateChangeListener(new YouTubePlayer.PlayerStateChangeListener() {
+                @Override
+                public void onLoading() {
+
+                }
+
+                @Override
+                public void onLoaded(String s) {
+                }
+
+                @Override
+                public void onAdStarted() {
+
+                }
+
+                @Override
+                public void onVideoStarted() {
+
+                }
+
+                @Override
+                public void onVideoEnded() {
+                    Intent intent = new Intent();
+                    intent.putExtra("done", 0);
+                    setResult(RESULT_OK, intent);
+                    finish();
+                }
+
+                @Override
+                public void onError(YouTubePlayer.ErrorReason errorReason) {
+
                 }
             });
 

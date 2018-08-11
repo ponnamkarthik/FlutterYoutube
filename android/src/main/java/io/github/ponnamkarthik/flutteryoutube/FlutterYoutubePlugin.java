@@ -2,20 +2,24 @@ package io.github.ponnamkarthik.flutteryoutube;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.util.Log;
 
+import io.flutter.plugin.common.EventChannel;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
 import io.flutter.plugin.common.MethodCall;
+import io.flutter.plugin.common.PluginRegistry;
 import io.flutter.plugin.common.PluginRegistry.Registrar;
 
 /**
  * FlutterYoutubePlugin
  */
-public class FlutterYoutubePlugin implements MethodCallHandler {
+public class FlutterYoutubePlugin implements MethodCallHandler, EventChannel.StreamHandler {
+
+  private static final String STREAM_CHANNEL_NAME = "PonnamKarthik/flutter_youtube_stream";
 
   Activity activity;
+  static EventChannel.EventSink events;
 
   FlutterYoutubePlugin(Activity act) {
     activity = act;
@@ -26,6 +30,23 @@ public class FlutterYoutubePlugin implements MethodCallHandler {
   public static void registerWith(Registrar registrar) {
     final MethodChannel channel = new MethodChannel(registrar.messenger(), "PonnamKarthik/flutter_youtube");
     channel.setMethodCallHandler(new FlutterYoutubePlugin(registrar.activity()));
+    registrar.addActivityResultListener(new PluginRegistry.ActivityResultListener() {
+      @Override
+      public boolean onActivityResult(int i, int i1, Intent intent) {
+        if(i == 111) {
+          if(intent != null) {
+            if(intent.getIntExtra("done", -1) == 0) {
+              events.success("done");
+            }
+          }
+        }
+        return false;
+      }
+    });
+
+    final EventChannel eventChannel = new EventChannel(registrar.messenger(), STREAM_CHANNEL_NAME);
+    FlutterYoutubePlugin youtubeWithEventChannel = new FlutterYoutubePlugin(registrar.activity());
+    eventChannel.setStreamHandler(youtubeWithEventChannel);
   }
 
   @Override
@@ -34,17 +55,30 @@ public class FlutterYoutubePlugin implements MethodCallHandler {
     if (call.method.equals("playYoutubeVideo")) {
       String apiKey = call.argument("api");
       String videoId = call.argument("id");
+      boolean autoPlay = call.argument("autoPlay");
       boolean fullScreen = call.argument("fullScreen");
 
 
       Intent playerIntent = new Intent(activity, PlayerActivity.class);
       playerIntent.putExtra("api", apiKey);
       playerIntent.putExtra("videoId", videoId);
+      playerIntent.putExtra("autoPlay", autoPlay);
       playerIntent.putExtra("fullScreen", fullScreen);
 
-      activity.startActivity(playerIntent);
+      activity.startActivityForResult(playerIntent, 111);
+
     } else {
       result.notImplemented();
     }
+  }
+
+  @Override
+  public void onListen(Object o, EventChannel.EventSink eventSink) {
+    events = eventSink;
+  }
+
+  @Override
+  public void onCancel(Object o) {
+    events = null;
   }
 }

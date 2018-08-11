@@ -1,3 +1,9 @@
+## [1.1.0]
+
+* Youtube embed URL
+* Video AutoPlay
+* Video play complete listener
+
 ## [1.0.1]
 
 * Bug fixes (video pause when screen rotated)

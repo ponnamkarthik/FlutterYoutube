@@ -1,9 +1,14 @@
+import 'dart:async';
+
 import 'package:meta/meta.dart';
 import 'package:flutter/services.dart';
 
 class FlutterYoutube {
   static const MethodChannel _channel =
       const MethodChannel('PonnamKarthik/flutter_youtube');
+
+  static const EventChannel _stream =
+      const EventChannel('PonnamKarthik/flutter_youtube_stream');
 
   static String getIdFromUrl(String url, [bool trimWhitespaces = true]) {
     if (url == null || url.length == 0) return null;
@@ -26,9 +31,10 @@ class FlutterYoutube {
     new RegExp(r"^https:\/\/youtu\.be\/([_\-a-zA-Z0-9]{11}).*$")
   ];
 
-  static void playYoutubeVideoByUrl(
+  static playYoutubeVideoByUrl(
       {@required String apiKey,
       @required String videoUrl,
+        bool autoPlay = false,
       bool fullScreen = false}) {
     if (apiKey.isEmpty || apiKey == null) {
       throw "Invalid API Key";
@@ -47,14 +53,16 @@ class FlutterYoutube {
     final Map<String, dynamic> params = <String, dynamic>{
       'api': apiKey,
       'id': id,
+      'autoPlay': autoPlay,
       'fullScreen': fullScreen
     };
     _channel.invokeMethod('playYoutubeVideo', params);
   }
 
-  static void playYoutubeVideoById(
+  void playYoutubeVideoById(
       {@required String apiKey,
       @required String videoId,
+        bool autoPlay = false,
       bool fullScreen = false}) {
     if (apiKey.isEmpty || apiKey == null) {
       throw "Invalid API Key";
@@ -67,8 +75,20 @@ class FlutterYoutube {
     final Map<String, dynamic> params = <String, dynamic>{
       'api': apiKey,
       'id': videoId,
+      'autoPlay': autoPlay,
       'fullScreen': fullScreen
     };
     _channel.invokeMethod('playYoutubeVideo', params);
+  }
+
+  Stream<String> done;
+
+  Stream<String> get onVideoEnded {
+
+    var d = _stream
+        .receiveBroadcastStream()
+        .map<String>(
+            (element) => element);
+    return d;
   }
 }

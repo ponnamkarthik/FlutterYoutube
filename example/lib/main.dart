@@ -27,15 +27,40 @@ class _MyAppState extends State<MyApp> {
   }
 
   void playYoutubeVideoEdit() {
+    var youtube = new FlutterYoutube();
+
+    youtube.onVideoEnded.listen((onData) {
+      //perform your action when video playing is done
+    });
+
     FlutterYoutube.playYoutubeVideoByUrl(
       apiKey: "<API_KEY>",
       videoUrl: textEditingControllerUrl.text,
     );
   }
   void playYoutubeVideoIdEdit() {
-    FlutterYoutube.playYoutubeVideoById(
+    var youtube = new FlutterYoutube();
+
+    youtube.onVideoEnded.listen((onData) {
+      //perform your action when video playing is done
+    });
+
+    youtube.playYoutubeVideoById(
       apiKey: "<API_KEY>",
       videoId: textEditingControllerId.text,
+    );
+  }
+  void playYoutubeVideoIdEditAuto() {
+    var youtube = new FlutterYoutube();
+
+    youtube.onVideoEnded.listen((onData) {
+      //perform your action when video playing is done
+    });
+
+    youtube.playYoutubeVideoById(
+      apiKey: "<API_KEY>",
+      videoId: textEditingControllerId.text,
+      autoPlay: true
     );
   }
 
@@ -87,6 +112,13 @@ class _MyAppState extends State<MyApp> {
                 child: new RaisedButton(
                     child: new Text("Play Video By Id"),
                     onPressed: playYoutubeVideoIdEdit
+                ),
+              ),
+              new Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: new RaisedButton(
+                    child: new Text("Auto Play Video By Id"),
+                    onPressed: playYoutubeVideoIdEditAuto
                 ),
               ),
             ],

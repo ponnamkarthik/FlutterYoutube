@@ -1,3 +1,7 @@
+## [1.1.2]
+
+* Video play complete listener Crash fixed
+
 ## [1.1.1]
 
 * Youtube embed URL

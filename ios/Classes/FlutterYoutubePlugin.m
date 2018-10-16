@@ -5,6 +5,7 @@
 static NSString *const PLATFORM_CHANNEL = @"PonnamKarthik/flutter_youtube";
 
 @implementation FlutterYoutubePlugin
+
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
     FlutterMethodChannel *shareChannel =
     [FlutterMethodChannel methodChannelWithName:PLATFORM_CHANNEL

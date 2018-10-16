@@ -36,7 +36,9 @@ public class FlutterYoutubePlugin implements MethodCallHandler, EventChannel.Str
         if(i == 111) {
           if(intent != null) {
             if(intent.getIntExtra("done", -1) == 0) {
-              events.success("done");
+              if(events != null) {
+                events.success("done");
+              }
             }
           }
         }

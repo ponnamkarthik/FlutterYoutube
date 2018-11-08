@@ -59,7 +59,7 @@ class FlutterYoutube {
     _channel.invokeMethod('playYoutubeVideo', params);
   }
 
-  void playYoutubeVideoById(
+  static playYoutubeVideoById(
       {@required String apiKey,
       @required String videoId,
         bool autoPlay = false,

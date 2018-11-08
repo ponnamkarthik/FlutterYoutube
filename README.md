@@ -10,7 +10,7 @@ Supported
 
 ```yaml
 dependencies:
-  flutter_youtube: "^1.1.3"
+  flutter_youtube: "^1.1.4"
 ```
 
 ###Imports

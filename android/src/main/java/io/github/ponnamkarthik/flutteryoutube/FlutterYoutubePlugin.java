@@ -17,6 +17,7 @@ import io.flutter.plugin.common.PluginRegistry.Registrar;
 public class FlutterYoutubePlugin implements MethodCallHandler, EventChannel.StreamHandler {
 
   private static final String STREAM_CHANNEL_NAME = "PonnamKarthik/flutter_youtube_stream";
+  private static final int YOUTUBE_PLAYER_RESULT = 6646;
 
   Activity activity;
   static EventChannel.EventSink events;
@@ -33,7 +34,7 @@ public class FlutterYoutubePlugin implements MethodCallHandler, EventChannel.Str
     registrar.addActivityResultListener(new PluginRegistry.ActivityResultListener() {
       @Override
       public boolean onActivityResult(int i, int i1, Intent intent) {
-        if(i == 111) {
+        if(i == YOUTUBE_PLAYER_RESULT) {
           if(intent != null) {
             if(intent.getIntExtra("done", -1) == 0) {
               if(events != null) {
@@ -67,7 +68,7 @@ public class FlutterYoutubePlugin implements MethodCallHandler, EventChannel.Str
       playerIntent.putExtra("autoPlay", autoPlay);
       playerIntent.putExtra("fullScreen", fullScreen);
 
-      activity.startActivityForResult(playerIntent, 111);
+      activity.startActivityForResult(playerIntent, YOUTUBE_PLAYER_RESULT);
 
     } else {
       result.notImplemented();

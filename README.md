@@ -51,10 +51,10 @@ youtube.onVideoEnded.listen((onData) {
 });
 ```
 
-Key | Value
------------- | -------------
-apiKey | String (Not Null)
-videoUrl | String (Not Null)
-videoId | String (Not Null)
-autoPlay | Boolean (Optional)(Default = false)
-fullScreen | Boolean (Optional)(Default = false)
+Key | Value | Default
+------------ | ------------- | -------------
+apiKey | String (Not Null) | 
+videoUrl | String (Not Null) | 
+videoId | String (Not Null) | 
+autoPlay | Boolean (Optional) | false
+fullScreen | Boolean (Optional) | false

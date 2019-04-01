@@ -1,13 +1,13 @@
 name: flutter_youtube
 description: Flutter Plugin to play youtube Videos
-version: 1.1.5
+version: 1.2.0
 author: Karthik Ponnam <ponnamkarthik3@gmail.com>
 homepage: https://github.com/PonnamKarthik/FlutterYoutube
 
 dependencies:
   flutter:
     sdk: flutter
-  meta: ^1.1.6
+  meta: any
 
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec
@@ -17,7 +17,6 @@ flutter:
   plugin:
     androidPackage: io.github.ponnamkarthik.flutteryoutube
     pluginClass: FlutterYoutubePlugin
-
   # To add assets to your plugin package, add an assets section, like this:
   # assets:
   #  - images/a_dot_burr.jpeg
@@ -28,7 +27,6 @@ flutter:
   #
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
-
   # To add custom fonts to your plugin package, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a

@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:meta/meta.dart';
 import 'package:flutter/services.dart';
 
@@ -31,10 +30,10 @@ class FlutterYoutube {
     new RegExp(r"^https:\/\/youtu\.be\/([_\-a-zA-Z0-9]{11}).*$")
   ];
 
-  static playYoutubeVideoByUrl(
+  playYoutubeVideoByUrl(
       {@required String apiKey,
       @required String videoUrl,
-        bool autoPlay = false,
+      bool autoPlay = false,
       bool fullScreen = false}) {
     if (apiKey.isEmpty || apiKey == null) {
       throw "Invalid API Key";
@@ -59,10 +58,10 @@ class FlutterYoutube {
     _channel.invokeMethod('playYoutubeVideo', params);
   }
 
-  static playYoutubeVideoById(
+  playYoutubeVideoById(
       {@required String apiKey,
       @required String videoId,
-        bool autoPlay = false,
+      bool autoPlay = false,
       bool fullScreen = false}) {
     if (apiKey.isEmpty || apiKey == null) {
       throw "Invalid API Key";
@@ -84,11 +83,7 @@ class FlutterYoutube {
   Stream<String> done;
 
   Stream<String> get onVideoEnded {
-
-    var d = _stream
-        .receiveBroadcastStream()
-        .map<String>(
-            (element) => element);
+    var d = _stream.receiveBroadcastStream().map<String>((element) => element);
     return d;
   }
 }

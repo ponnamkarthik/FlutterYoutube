@@ -3,14 +3,15 @@
 Flutter Plugin to play youtube Videos using youtube player api (android)
 
 Supported
-* Android
-* iOS
+
+- Android
+- iOS
 
 ## How to Use
 
 ```yaml
 dependencies:
-  flutter_youtube: "^1.1.4"
+  flutter_youtube: "^1.2.0"
 ```
 
 ###Imports
@@ -32,18 +33,9 @@ youtube.playYoutubeVideoByUrl(
 );
 ```
 
-```dart
-FlutterYoutube.playYoutubeVideoById(
-  apiKey: "<API_KEY>",
-  videoId: "<Youtube Video ID>",
-  autoPlay: true, //default falase
-  fullScreen: true //default false
-);
-```
-
 ### Video End Listener
 
-> *Note Right now only supported in android
+> \*Note Right now only supported in android
 
 ```dart
 youtube.onVideoEnded.listen((onData) {
@@ -51,10 +43,10 @@ youtube.onVideoEnded.listen((onData) {
 });
 ```
 
-Key | Value | Default
------------- | ------------- | -------------
-apiKey | String (Not Null) | 
-videoUrl | String (Not Null) | 
-videoId | String (Not Null) | 
-autoPlay | Boolean (Optional) | false
-fullScreen | Boolean (Optional) | false
+| Key        | Value              | Default |
+| ---------- | ------------------ | ------- |
+| apiKey     | String (Not Null)  |
+| videoUrl   | String (Not Null)  |
+| videoId    | String (Not Null)  |
+| autoPlay   | Boolean (Optional) | false   |
+| fullScreen | Boolean (Optional) | false   |

@@ -11,6 +11,7 @@ import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayer.Provider;
 import com.google.android.youtube.player.YouTubePlayerView;
 
+import 	java.lang.Exception;
 
 public class PlayerActivity extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener {
 
@@ -30,7 +31,11 @@ public class PlayerActivity extends YouTubeBaseActivity implements YouTubePlayer
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_player);
 
-        // getActionBar().hide();
+        try {
+            getActionBar().hide();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
 
         API_KEY = getIntent().getStringExtra("api");
         videoId = getIntent().getStringExtra("videoId");

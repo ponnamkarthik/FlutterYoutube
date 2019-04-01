@@ -30,7 +30,7 @@ public class PlayerActivity extends YouTubeBaseActivity implements YouTubePlayer
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_player);
 
-        getActionBar().hide();
+        // getActionBar().hide();
 
         API_KEY = getIntent().getStringExtra("api");
         videoId = getIntent().getStringExtra("videoId");

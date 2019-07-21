@@ -50,3 +50,6 @@ youtube.onVideoEnded.listen((onData) {
 | videoId    | String (Not Null)  |
 | autoPlay   | Boolean (Optional) | false   |
 | fullScreen | Boolean (Optional) | false   |
+
+### API Key
+your API key is what you need to use so your application can submit API requests to youtube. For that you are gonna need a Google Account to access the Google API Console, request an API key, and register your application. After that create a project in the Google Developers Console and obtain authorization credentials so your application can submit API requests. More here https://developers.google.com/youtube/v3/getting-started

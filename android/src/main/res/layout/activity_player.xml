@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PlayerActivity"
-    android:background="#000000">
+    android:background="#6d6d6d"
+    android:id="@+id/root_view">
 
     <com.google.android.youtube.player.YouTubePlayerView
         android:layout_centerInParent="true"

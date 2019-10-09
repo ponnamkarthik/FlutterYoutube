@@ -1,5 +1,6 @@
 #import <XCDYouTubeKit/XCDYouTubeKit.h>
-
+#import <AVFoundation/AVFoundation.h>
+#import <AVKit/AVKit.h>
 #import "FlutterYoutubePlugin.h"
 
 static NSString *const PLATFORM_CHANNEL = @"PonnamKarthik/flutter_youtube";

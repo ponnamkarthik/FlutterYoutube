@@ -48,7 +48,8 @@ static NSString *const PLATFORM_CHANNEL = @"PonnamKarthik/flutter_youtube";
     [[[[[UIApplication sharedApplication] delegate] window] rootViewController] presentMoviePlayerViewControllerAnimated: videoPlayerViewController];*/
     
     AVPlayerViewController *playerViewController = [AVPlayerViewController new];
-    [[[[[UIApplication sharedApplication] delegate] window] rootViewController] presentMoviePlayerViewControllerAnimated: playerViewController];
+    //[[[[[UIApplication sharedApplication] delegate] window] rootViewController] presentMoviePlayerViewControllerAnimated: playerViewController];
+    [self presentViewController:playerViewController animated:YES completion:nil];
     
     __weak AVPlayerViewController *weakPlayerViewController = playerViewController;
     [[XCDYouTubeClient defaultClient] getVideoWithIdentifier:ytid completionHandler:^(XCDYouTubeVideo * _Nullable video, NSError * _Nullable error) {
@@ -61,7 +62,8 @@ static NSString *const PLATFORM_CHANNEL = @"PonnamKarthik/flutter_youtube";
     }
     else
     {
-        [[[[[UIApplication sharedApplication] delegate] window] rootViewController] dismissViewControllerAnimated:YES completion:nil];
+        //[[[[[UIApplication sharedApplication] delegate] window] rootViewController] dismissViewControllerAnimated:YES completion:nil];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
 }];
 }

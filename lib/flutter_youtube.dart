@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:meta/meta.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/material.dart';
 
 class FlutterYoutube {
   static const MethodChannel _channel =
@@ -34,7 +35,10 @@ class FlutterYoutube {
       {@required String apiKey,
       @required String videoUrl,
       bool autoPlay = false,
-      bool fullScreen = false}) {
+      bool fullScreen = false,
+        Color appBarColor = Colors.black,
+        Color backgroundColor = Colors.black,
+      }) {
     if (apiKey.isEmpty || apiKey == null) {
       throw "Invalid API Key";
     }
@@ -53,7 +57,9 @@ class FlutterYoutube {
       'api': apiKey,
       'id': id,
       'autoPlay': autoPlay,
-      'fullScreen': fullScreen
+      'fullScreen': fullScreen,
+      'appBarColor': parseColorToHex(appBarColor),
+      'backgroundColor': parseColorToHex(backgroundColor),
     };
     _channel.invokeMethod('playYoutubeVideo', params);
   }
@@ -62,7 +68,10 @@ class FlutterYoutube {
       {@required String apiKey,
       @required String videoId,
       bool autoPlay = false,
-      bool fullScreen = false}) {
+      bool fullScreen = false,
+      Color appBarColor = Colors.grey,
+      Color backgroundColor = Colors.black,
+      }) {
     if (apiKey.isEmpty || apiKey == null) {
       throw "Invalid API Key";
     }
@@ -75,7 +84,9 @@ class FlutterYoutube {
       'api': apiKey,
       'id': videoId,
       'autoPlay': autoPlay,
-      'fullScreen': fullScreen
+      'fullScreen': fullScreen,
+      'appBarColor': parseColorToHex(appBarColor),
+      'backgroundColor': parseColorToHex(backgroundColor),
     };
     _channel.invokeMethod('playYoutubeVideo', params);
   }
@@ -86,4 +97,9 @@ class FlutterYoutube {
     var d = _stream.receiveBroadcastStream().map<String>((element) => element);
     return d;
   }
+
+  int parseColorToHex(Color color){
+    return int.parse("0xFF"+color.value.toRadixString(16).padLeft(8, '0'));
+  }
+
 }

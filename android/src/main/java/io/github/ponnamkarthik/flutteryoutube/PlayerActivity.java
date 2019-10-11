@@ -1,8 +1,12 @@
 package io.github.ponnamkarthik.flutteryoutube;
 
+import android.app.ActionBar;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.MenuItem;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.android.youtube.player.YouTubeBaseActivity;
@@ -24,6 +28,8 @@ public class PlayerActivity extends YouTubeBaseActivity implements YouTubePlayer
     private boolean isFullScreen = false;
     private boolean autoPlay = false;
     private boolean goFullScreen = false;
+    private int appBarColor;
+    private int backgroundColor;
 
 
     @Override
@@ -31,8 +37,18 @@ public class PlayerActivity extends YouTubeBaseActivity implements YouTubePlayer
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_player);
 
+        appBarColor = getIntent().getIntExtra("appBarColor" , 0xFF424242);
+        backgroundColor = getIntent().getIntExtra("backgroundColor" , 0xFF1b1b1b);
+
         try {
-            getActionBar().hide();
+            ActionBar actionBar = getActionBar();
+            actionBar.setBackgroundDrawable(new ColorDrawable(appBarColor));
+
+            final RelativeLayout rootView = (RelativeLayout) findViewById(R.id.root_view);
+            rootView.setBackgroundColor(backgroundColor);
+
+            getWindow().getDecorView().setBackgroundColor(backgroundColor);
+            actionBar.setDisplayHomeAsUpEnabled(true);
         } catch(Exception e) {
             e.printStackTrace();
         }
@@ -161,6 +177,14 @@ public class PlayerActivity extends YouTubeBaseActivity implements YouTubePlayer
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == android.R.id.home){
+            this.finish();
+        }
+        return true;
     }
 
     @Override

@@ -30,7 +30,7 @@ class FlutterYoutube {
     new RegExp(r"^https:\/\/youtu\.be\/([_\-a-zA-Z0-9]{11}).*$")
   ];
 
-  playYoutubeVideoByUrl(
+  static playYoutubeVideoByUrl(
       {@required String apiKey,
       @required String videoUrl,
       bool autoPlay = false,
@@ -58,7 +58,7 @@ class FlutterYoutube {
     _channel.invokeMethod('playYoutubeVideo', params);
   }
 
-  playYoutubeVideoById(
+  static playYoutubeVideoById(
       {@required String apiKey,
       @required String videoId,
       bool autoPlay = false,

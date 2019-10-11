@@ -1,5 +1,6 @@
 #import <XCDYouTubeKit/XCDYouTubeKit.h>
-
+#import <AVFoundation/AVFoundation.h>
+#import <AVKit/AVKit.h>
 #import "FlutterYoutubePlugin.h"
 
 static NSString *const PLATFORM_CHANNEL = @"PonnamKarthik/flutter_youtube";
@@ -42,9 +43,27 @@ static NSString *const PLATFORM_CHANNEL = @"PonnamKarthik/flutter_youtube";
 }
 
 + (void) playVideo: (NSString *) ytid {
-    XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:ytid];
+    /*XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:ytid];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayerPlaybackDidFinish:) name:MPMoviePlayerPlaybackDidFinishNotification object:videoPlayerViewController.moviePlayer];
-    [[[[[UIApplication sharedApplication] delegate] window] rootViewController] presentMoviePlayerViewControllerAnimated: videoPlayerViewController];
+    [[[[[UIApplication sharedApplication] delegate] window] rootViewController] presentMoviePlayerViewControllerAnimated: videoPlayerViewController];*/
+    
+    AVPlayerViewController *playerViewController = [AVPlayerViewController new];
+    [[UIApplication sharedApplication].windows.firstObject.rootViewController presentViewController:playerViewController animated:YES completion:nil];
+    
+    __weak AVPlayerViewController *weakPlayerViewController = playerViewController;
+    [[XCDYouTubeClient defaultClient] getVideoWithIdentifier:ytid completionHandler:^(XCDYouTubeVideo * _Nullable video, NSError * _Nullable error) {
+    if (video)
+    {
+        NSDictionary *streamURLs = video.streamURLs;
+        NSURL *streamURL = streamURLs[XCDYouTubeVideoQualityHTTPLiveStreaming] ?: streamURLs[@(XCDYouTubeVideoQualityHD720)] ?: streamURLs[@(XCDYouTubeVideoQualityMedium360)] ?: streamURLs[@(XCDYouTubeVideoQualitySmall240)];
+        weakPlayerViewController.player = [AVPlayer playerWithURL:streamURL];
+        [weakPlayerViewController.player play];
+    }
+    else
+    {
+        [[UIApplication sharedApplication].windows.firstObject.rootViewController dismissViewControllerAnimated:YES completion:nil];
+    }
+}];
 }
 
 + (void) moviePlayerPlaybackDidFinish:(NSNotification *)notification

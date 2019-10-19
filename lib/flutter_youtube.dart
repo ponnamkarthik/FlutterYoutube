@@ -99,7 +99,7 @@ class FlutterYoutube {
 
   Stream<String> done;
 
-  Stream<String> get onVideoEnded {
+  static Stream<String> get onVideoEnded {
     final Stream<String> d =
         _stream.receiveBroadcastStream().map<String>((element) => element);
     return d;

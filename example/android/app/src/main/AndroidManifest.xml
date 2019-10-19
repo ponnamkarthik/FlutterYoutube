@@ -1,4 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
     package="io.github.ponnamkarthik.flutteryoutubeexample">
 
     <!-- The INTERNET permission is required for development. Specifically,

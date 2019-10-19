@@ -12,48 +12,46 @@ class _MyAppState extends State<MyApp> {
   TextEditingController textEditingControllerUrl = new TextEditingController();
   TextEditingController textEditingControllerId = new TextEditingController();
 
-  var youtube = new FlutterYoutube();
-
   @override
   initState() {
     super.initState();
   }
 
   void playYoutubeVideo() {
-    youtube.playYoutubeVideoByUrl(
+    FlutterYoutube.playYoutubeVideoByUrl(
       apiKey: "<API_KEY>",
-      videoUrl: "https://www.youtube.com/watch?v=fhWaJi1Hsfo",
+      videoUrl: "https://www.youtube.com/watch?v=wgTBLj7rMPM",
     );
   }
 
   void playYoutubeVideoEdit() {
-    youtube.onVideoEnded.listen((onData) {
+    FlutterYoutube.onVideoEnded.listen((onData) {
       //perform your action when video playing is done
     });
 
-    youtube.playYoutubeVideoByUrl(
+    FlutterYoutube.playYoutubeVideoByUrl(
       apiKey: "<API_KEY>",
       videoUrl: textEditingControllerUrl.text,
     );
   }
 
   void playYoutubeVideoIdEdit() {
-    youtube.onVideoEnded.listen((onData) {
+    FlutterYoutube.onVideoEnded.listen((onData) {
       //perform your action when video playing is done
     });
 
-    youtube.playYoutubeVideoById(
+    FlutterYoutube.playYoutubeVideoById(
       apiKey: "<API_KEY>",
       videoId: textEditingControllerId.text,
     );
   }
 
   void playYoutubeVideoIdEditAuto() {
-    youtube.onVideoEnded.listen((onData) {
+    FlutterYoutube.onVideoEnded.listen((onData) {
       //perform your action when video playing is done
     });
 
-    youtube.playYoutubeVideoById(
+    FlutterYoutube.playYoutubeVideoById(
         apiKey: "<API_KEY>",
         videoId: textEditingControllerId.text,
         autoPlay: true);
@@ -94,7 +92,7 @@ class _MyAppState extends State<MyApp> {
                 child: new TextField(
                   controller: textEditingControllerId,
                   decoration: new InputDecoration(
-                      labelText: "Youtube Video Id (fhWaJi1Hsfo)"),
+                      labelText: "Youtube Video Id (wgTBLj7rMPM)"),
                 ),
               ),
               new Padding(

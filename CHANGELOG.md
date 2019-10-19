@@ -1,4 +1,11 @@
-##[1.2.0]
+# Flutter Youtube
+
+## [1.3.5]
+
+- Made `flutter_youtube.dart::parseColorToHex` static to allow `playYoutubeVideoById` to execute properly
+- Miscellaneous cleaning
+
+## [1.2.0]
 
 - Only use `var youtube = new FlutterYoutube()`;
 

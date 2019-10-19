@@ -1,13 +1,13 @@
 name: flutter_youtube
 description: Flutter Plugin to play youtube Videos
-version: 1.3.4
+version: 1.3.6
 author: Karthik Ponnam <ponnamkarthik3@gmail.com>
 homepage: https://github.com/PonnamKarthik/FlutterYoutube
 
 dependencies:
   flutter:
     sdk: flutter
-  meta: any
+  meta: ^1.1.7
 
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec

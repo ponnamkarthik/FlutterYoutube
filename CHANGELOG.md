@@ -1,3 +1,12 @@
+##[1.3.6]
+
+- Build error in version 1.3.5 fixed
+
+##[1.3.5]
+
+- iOS Crash Fixes
+
+
 ##[1.2.0]
 
 - Only use `var youtube = new FlutterYoutube()`;

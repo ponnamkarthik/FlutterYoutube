@@ -1,6 +1,7 @@
-##[1.3.6]
+##[2.0.0]
 
-- Build error in version 1.3.5 fixed
+- major update
+- `var youtube = new FlutterYoutube()` to `FlutterYoutube.`;
 
 ##[1.3.5]
 

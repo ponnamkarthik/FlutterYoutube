@@ -11,7 +11,7 @@ Supported
 
 ```yaml
 dependencies:
-  flutter_youtube: "^1.2.0"
+  flutter_youtube: "^2.0.0"
 ```
 
 ###Imports
@@ -23,9 +23,8 @@ import 'package:flutter_youtube/flutter_youtube.dart';
 ###Code
 
 ```dart
-var youtube = new FlutterYoutube();
 
-youtube.playYoutubeVideoByUrl(
+FlutterYoutube.playYoutubeVideoByUrl(
   apiKey: "<API_KEY>",
   videoUrl: "<Youtube Video URL>",
   autoPlay: true, //default falase
@@ -35,10 +34,10 @@ youtube.playYoutubeVideoByUrl(
 
 ### Video End Listener
 
-> \*Note Right now only supported in android
+> Note Right now only supported in android
 
 ```dart
-youtube.onVideoEnded.listen((onData) {
+FlutterYoutube.onVideoEnded.listen((onData) {
   //perform your action when video playing is done
 });
 ```

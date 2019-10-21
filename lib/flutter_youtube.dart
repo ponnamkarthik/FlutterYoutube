@@ -42,6 +42,7 @@ class FlutterYoutube {
     @required String videoUrl,
     bool autoPlay = false,
     bool fullScreen = false,
+    bool appBarVisible = false,
     Color appBarColor = Colors.black,
     Color backgroundColor = Colors.black,
   }) {
@@ -64,6 +65,7 @@ class FlutterYoutube {
       'id': id,
       'autoPlay': autoPlay,
       'fullScreen': fullScreen,
+      'appBarVisible': appBarVisible,
       'appBarColor': parseColorToHex(appBarColor),
       'backgroundColor': parseColorToHex(backgroundColor),
     };
@@ -75,6 +77,7 @@ class FlutterYoutube {
     @required String videoId,
     bool autoPlay = false,
     bool fullScreen = false,
+    bool appBarVisible = false,
     Color appBarColor = Colors.grey,
     Color backgroundColor = Colors.black,
   }) {
@@ -91,6 +94,7 @@ class FlutterYoutube {
       'id': videoId,
       'autoPlay': autoPlay,
       'fullScreen': fullScreen,
+      'appBarVisible': appBarVisible,
       'appBarColor': parseColorToHex(appBarColor),
       'backgroundColor': parseColorToHex(backgroundColor),
     };

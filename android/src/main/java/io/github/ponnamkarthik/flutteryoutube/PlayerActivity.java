@@ -15,8 +15,6 @@ import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayer.Provider;
 import com.google.android.youtube.player.YouTubePlayerView;
 
-import 	java.lang.Exception;
-
 public class PlayerActivity extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener {
 
     private static final int RECOVERY_REQUEST = 1;
@@ -37,29 +35,33 @@ public class PlayerActivity extends YouTubeBaseActivity implements YouTubePlayer
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_player);
 
-        appBarColor = getIntent().getIntExtra("appBarColor" , 0xFF424242);
-        backgroundColor = getIntent().getIntExtra("backgroundColor" , 0xFF1b1b1b);
-
-        try {
-            ActionBar actionBar = getActionBar();
-            actionBar.setBackgroundDrawable(new ColorDrawable(appBarColor));
-
-            final RelativeLayout rootView = (RelativeLayout) findViewById(R.id.root_view);
-            rootView.setBackgroundColor(backgroundColor);
-
-            getWindow().getDecorView().setBackgroundColor(backgroundColor);
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        } catch(Exception e) {
-            e.printStackTrace();
+        ActionBar actionBar = getActionBar();
+        if (actionBar != null) {
+            if (getIntent().getBooleanExtra("appBarVisible", false)) {
+                setupActionBarColor(actionBar);
+            } else {
+                actionBar.hide();
+            }
         }
 
         API_KEY = getIntent().getStringExtra("api");
         videoId = getIntent().getStringExtra("videoId");
         goFullScreen = getIntent().getBooleanExtra("fullScreen", false);
         autoPlay = getIntent().getBooleanExtra("autoPlay", false);
+        backgroundColor = getIntent().getIntExtra("backgroundColor" , 0xFF1b1b1b);
+
+        final RelativeLayout rootView = (RelativeLayout) findViewById(R.id.root_view);
+        rootView.setBackgroundColor(backgroundColor);
+        getWindow().getDecorView().setBackgroundColor(backgroundColor);
 
         youTubeView = (YouTubePlayerView) findViewById(R.id.youtube_view);
         youTubeView.initialize(API_KEY, this);
+    }
+
+    private void setupActionBarColor(ActionBar actionBar) {
+        appBarColor = getIntent().getIntExtra("appBarColor" , 0xFF424242);
+        actionBar.setBackgroundDrawable(new ColorDrawable(appBarColor));
+        actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
     @Override

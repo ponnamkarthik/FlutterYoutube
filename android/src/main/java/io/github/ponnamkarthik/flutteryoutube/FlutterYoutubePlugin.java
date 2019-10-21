@@ -60,6 +60,7 @@ public class FlutterYoutubePlugin implements MethodCallHandler, EventChannel.Str
       String videoId = call.argument("id");
       boolean autoPlay = call.argument("autoPlay");
       boolean fullScreen = call.argument("fullScreen");
+      boolean appBarVisible = call.argument("appBarVisible");
       Long appBarColor = call.argument("appBarColor");
       Long backgroundColor = call.argument("backgroundColor");
 
@@ -69,6 +70,7 @@ public class FlutterYoutubePlugin implements MethodCallHandler, EventChannel.Str
       playerIntent.putExtra("videoId", videoId);
       playerIntent.putExtra("autoPlay", autoPlay);
       playerIntent.putExtra("fullScreen", fullScreen);
+      playerIntent.putExtra("appBarVisible", appBarVisible);
       playerIntent.putExtra("appBarColor", appBarColor.intValue());
       playerIntent.putExtra("backgroundColor", backgroundColor.intValue());
 

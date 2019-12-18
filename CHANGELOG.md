@@ -1,14 +1,14 @@
-##[2.0.0]
+## [2.0.0]
 
 - major update
 - `var youtube = new FlutterYoutube()` to `FlutterYoutube.`;
 
-##[1.3.5]
+## [1.3.5]
 
 - iOS Crash Fixes
 
 
-##[1.2.0]
+## [1.2.0]
 
 - Only use `var youtube = new FlutterYoutube()`;
 

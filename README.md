@@ -22,13 +22,13 @@ dependencies:
   flutter_youtube: "^2.0.0+1"
 ```
 
-###Imports
+### Imports
 
 ```dart
 import 'package:flutter_youtube/flutter_youtube.dart';
 ```
 
-###Code
+### Code
 
 ```dart
 
